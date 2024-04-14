@@ -11,13 +11,31 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      required: true
+    }
   },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // document.title = to.meta.title
+
+  if (to.meta.required) {
+    if (localStorage.getItem('token')) {
+      next()
+    } else {
+      alert('Пройдите авторизацию')
+      next('/')
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
