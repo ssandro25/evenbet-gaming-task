@@ -15,4 +15,8 @@ export default class Api {
             refreshToken: refreshToken
         });
     }
+
+    getBalance(token) {
+        return axios.get(`https://poker.evenbetpoker.com/api/web/v2/users/me/balance?clientId=default&auth=${token}`)
+    }
 }

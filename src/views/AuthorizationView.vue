@@ -47,9 +47,11 @@
 import {ref} from "vue";
 import Api from "@/requests/Request"
 import {useStore} from "vuex";
+import { useRouter } from 'vue-router';
 
 const api = new Api()
 const store = useStore()
+const router = useRouter();
 
 const login = ref('')
 const password = ref('')
@@ -59,17 +61,18 @@ const auth = () => {
     api.auth(login.value, password.value).then(response => {
         if (response && response.status === 200) {
             const token = response.data.data[0].attributes.token
-            const refreshToken = response.data.data[0].attributes.refresh-token
+            const refreshToken = response.data.data[0].attributes['refresh-token']
 
             store.dispatch('setToken', token)
             store.dispatch('setRefreshToken', refreshToken)
 
-            console.log(response.data.data[0].attributes)
-
-            // console.log(true)
+            // console.log(token)
+            // console.log(response.data)
+            // console.log(refreshToken)
 
             checkMessage.value = false
 
+            router.push('/home');
             setInterval(() => {
                 refreshTokenFunc();
             }, 800000);
@@ -86,7 +89,7 @@ const refreshTokenFunc = () => {
     api.refreshToken(refreshToken).then(response => {
         if (response && response.status === 200) {
             const newToken = response.data.data[0].attributes.token;
-            const newRefreshToken = response.data.data[0].attributes.refresh-token
+            const newRefreshToken = response.data.data[0].attributes['refresh-token']
             store.dispatch('setToken', newToken);
             store.dispatch('setRefreshToken', newRefreshToken);
         }
