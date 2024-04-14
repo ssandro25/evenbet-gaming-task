@@ -1,15 +1,15 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <UserBalance />
-            </div>
-
-            <div class="col-lg-10">
-                <GamesList />
-            </div>
+    <header class="container-fluid sticky-top bg-dark py-3 px-0">
+        <div class="container">
+            <UserBalance />
         </div>
-    </div>
+    </header>
+
+    <main class="container-fluid">
+        <div class="container">
+            <GamesList />
+        </div>
+    </main>
 </template>
 
 <script setup>

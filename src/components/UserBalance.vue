@@ -1,15 +1,14 @@
 <template>
-    <div>
-        User Balance
-        <p class="mb-0">
+    <div class="d-flex align-items-center justify-content-between gap-2">
+        <p class="text-white mb-0">
             Available: {{ available }} {{ currency }}
         </p>
 
-        <p class="mb-0">
+        <p class="text-white mb-0">
             Bonus: {{ bonus }} {{ currency }}
         </p>
 
-        <p class="mb-0">
+        <p class="text-white mb-0">
             In play: {{ inPlay }} {{ currency }}
         </p>
     </div>
@@ -34,7 +33,6 @@ onMounted(()=> {
         bonus.value = response.data.data[0].attributes.bonus
         currency.value = response.data.data[0].attributes.currency
         inPlay.value = response.data.data[0].attributes['in-play']
-        // console.log(response)
     })
 })
 </script>

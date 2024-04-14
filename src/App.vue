@@ -1,7 +1,5 @@
 <template>
-    <main class="container-fluid my-5">
-        <router-view/>
-    </main>
+    <router-view/>
 </template>
 
 <script setup>

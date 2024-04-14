@@ -68,10 +68,11 @@ const auth = () => {
 
             checkMessage.value = false
 
-            router.push('/home');
+            router.push('/home')
+
             setInterval(() => {
-                refreshTokenFunc();
-            }, 800000);
+                updateToken()
+            }, 800000)
         }
     }).catch(error => {
         if (error.response && error.response.status === 422) {
@@ -80,14 +81,15 @@ const auth = () => {
     })
 }
 
-const refreshTokenFunc = () => {
+const updateToken = () => {
     const refreshToken = store.getters.getRefreshToken;
     api.refreshToken(refreshToken).then(response => {
         if (response && response.status === 200) {
             const newToken = response.data.data[0].attributes.token;
             const newRefreshToken = response.data.data[0].attributes['refresh-token']
-            store.dispatch('setToken', newToken);
-            store.dispatch('setRefreshToken', newRefreshToken);
+
+            store.dispatch('setToken', newToken)
+            store.dispatch('setRefreshToken', newRefreshToken)
         }
     }).catch(error => console.error(error));
 };
