@@ -66,10 +66,6 @@ const auth = () => {
             store.dispatch('setToken', token)
             store.dispatch('setRefreshToken', refreshToken)
 
-            // console.log(token)
-            // console.log(response.data)
-            // console.log(refreshToken)
-
             checkMessage.value = false
 
             router.push('/home');

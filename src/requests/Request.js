@@ -23,4 +23,11 @@ export default class Api {
     getGames() {
         return axios.get('https://poker.evenbetpoker.com/api/web/v2/casino/games?clientId=default')
     }
+
+    openGame(id) {
+        return axios.post(`https://poker.evenbetpoker.com/api/web/v2/casino/games/${id}/session-demo?clientId=default'`, {
+            clientId: "default",
+            gameId: id
+        })
+    }
 }
