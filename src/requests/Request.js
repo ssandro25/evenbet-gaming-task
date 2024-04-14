@@ -19,4 +19,8 @@ export default class Api {
     getBalance(token) {
         return axios.get(`https://poker.evenbetpoker.com/api/web/v2/users/me/balance?clientId=default&auth=${token}`)
     }
+
+    getGames() {
+        return axios.get('https://poker.evenbetpoker.com/api/web/v2/casino/games?clientId=default')
+    }
 }

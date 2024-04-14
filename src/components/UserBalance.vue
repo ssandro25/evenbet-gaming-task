@@ -34,7 +34,7 @@ onMounted(()=> {
         bonus.value = response.data.data[0].attributes.bonus
         currency.value = response.data.data[0].attributes.currency
         inPlay.value = response.data.data[0].attributes['in-play']
-        console.log(response)
+        // console.log(response)
     })
 })
 </script>
